@@ -1,10 +1,12 @@
 import { ActionTypes } from "../actions";
+const DATE = new Date();
 
 const initialState = {
-	day: new Date().getDay(),
-	month: new Date().getMonth(),
-	year: new Date().getFullYear(),
+	day: DATE.getDay(),
+	month: DATE.getMonth(),
+	year: DATE.getFullYear(),
 };
+
 export default function date(state = initialState, { type, payload }) {
 	switch (type) {
 		case ActionTypes.SET_DAY:

@@ -1,0 +1,9 @@
+.gridCalendarItem {
+    height: 90px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.gridCalendarItem:hover {
+    background-color: #f5f5f5;
+}
