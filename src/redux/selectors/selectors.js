@@ -12,6 +12,14 @@ export const getNumOfDaysInMonth = createSelector(
     }
 )
 
+export const getNumOfDaysInMonthPrev = createSelector(
+    dateSelector,
+    ({year, month}) => {
+        const d = new Date(year, month, 0);
+        return d.getDate();
+    }
+)
+
 export const getFirstDayOfMonth = createSelector(
     dateSelector,
     ({ year, month }) => {

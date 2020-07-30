@@ -5,11 +5,16 @@ import { ActionCreators } from "../redux/actions";
 import GridCalendarTile from "../components/GridCalendar/GridCalendarTile/GridCalendarTile";
 import GridCalendar from "../components/GridCalendar/GridCalendar";
 
-import { getFirstDayOfMonth, getNumOfDaysInMonth } from "../redux/selectors/selectors";
+import {
+	getFirstDayOfMonth,
+	getNumOfDaysInMonth,
+	getNumOfDaysInMonthPrev,
+} from "../redux/selectors/selectors";
 
 function CalendarPageComponent({
 	numOfDaysInMonth,
 	firstDayOfMonth,
+	numOfDaysInMonthPrev,
 	date,
 	setMonth,
 	setMonthAndYear,
@@ -20,8 +25,8 @@ function CalendarPageComponent({
 			<GridCalendarTile date={date} setMonth={setMonth} setMonthAndYear={setMonthAndYear} />
 			<p>{`${date.month} ${date.year} ${numOfDaysInMonth} ${firstDayOfMonth}`}</p>
 			<GridCalendar
-
 				numOfDaysInMonth={numOfDaysInMonth}
+				numOfDaysInMonthPrev={numOfDaysInMonthPrev}
 				firstDayOfMonth={firstDayOfMonth}
 			/>
 		</div>
@@ -32,6 +37,7 @@ const mapStateToProps = (state) => {
 	return {
 		...state,
 		numOfDaysInMonth: getNumOfDaysInMonth(state),
+		numOfDaysInMonthPrev: getNumOfDaysInMonthPrev(state),
 		firstDayOfMonth: getFirstDayOfMonth(state),
 	};
 };
