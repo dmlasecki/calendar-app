@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route } from "react-router-dom";
 import CalendarPage from "./pages/calendar";
+import DayPage from "./pages/day";
 import Home from "./pages/home";
 import Layout from "./components/Layout/Layout";
 
@@ -14,6 +15,9 @@ function App() {
         </Route>
         <Route path={"/calendar"}>
             <CalendarPage />
+        </Route>
+        <Route path={"/day"}>
+            <DayPage />
         </Route>
     </Layout>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { ActionCreators } from "../redux/actions";
 
-import GridCalendarTile from "../components/GridCalendar/GridCalendarTile/GridCalendarTile";
+import GridCalendarTile from "../components/GridCalendarTile/GridCalendarTile";
 import GridCalendar from "../components/GridCalendar/GridCalendar";
 
 import {
@@ -27,6 +27,7 @@ function CalendarPageComponent({
 				numOfDaysInMonth={numOfDaysInMonth}
 				numOfDaysInMonthPrev={numOfDaysInMonthPrev}
 				firstDayOfMonth={firstDayOfMonth}
+				setDay={setDay}
 			/>
 		</div>
 	);

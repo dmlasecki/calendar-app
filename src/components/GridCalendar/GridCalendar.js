@@ -1,34 +1,47 @@
 import React from "react";
-
+import { useHistory } from "react-router-dom";
 import GridCalendarItem from "./GridCalendarItem/GridCalendarItem";
+import { crateFullCalendarForMonth } from "../../utils/calendarLogic";
+import { DAYS } from "../../constants/constants";
 import styles from "./GridCalendar.module.css";
 
-const BASE_GRID_NUM = 6 * 7;
+export default function GridCalendar({
+	numOfDaysInMonth,
+	numOfDaysInMonthPrev,
+	firstDayOfMonth,
+	setDay,
+}) {
+	let history = useHistory();
 
-export default function GridCalendar({ numOfDaysInMonth, numOfDaysInMonthPrev, firstDayOfMonth }) {
-	let arrayOfDays = getIterableArrayFromNum(numOfDaysInMonthPrev).slice(
-		firstDayOfMonth ? -firstDayOfMonth : numOfDaysInMonthPrev
+	function onItemClickHandle(num) {
+		setDay(num);
+		history.push("/day");
+	}
+
+	const arrayOfDays = crateFullCalendarForMonth(
+		numOfDaysInMonth,
+		numOfDaysInMonthPrev,
+		firstDayOfMonth
 	);
-	arrayOfDays = [...arrayOfDays, ...getIterableArrayFromNum(numOfDaysInMonth)];
-	arrayOfDays = [
-		...arrayOfDays,
-		...getIterableArrayFromNum(BASE_GRID_NUM - numOfDaysInMonth - firstDayOfMonth),
-	];
 
-	function getIterableArrayFromNum(num) {
-		return Array.from({ length: num }, (k, v) => v + 1);
+	function isFade(index) {
+		return index < firstDayOfMonth || index > numOfDaysInMonth + firstDayOfMonth - 1;
 	}
 
 	return (
 		<div className={styles.gridCalendar}>
+			{DAYS.map((day, index) => (
+				<GridCalendarItem key={index} day={day} onClick={() => {}} isDayIndicator={true} />
+			))}
 			{arrayOfDays.map((num, index) => (
 				<GridCalendarItem
 					key={index}
 					firstDayOfMonth={num === 0 ? firstDayOfMonth : ""}
 					day={num}
-					isFade={
-						index < firstDayOfMonth || index > numOfDaysInMonth + firstDayOfMonth - 1
-					}
+					dayOfWeek={index % 7}
+					isFade={isFade(index)}
+					isDayIndicator={false}
+					onClick={() => onItemClickHandle(num)}
 				/>
 			))}
 		</div>

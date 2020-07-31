@@ -8,8 +8,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import reducer from "./redux/reducers/index";
-const store = createStore(reducer);
-
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
     <Provider store={store}>

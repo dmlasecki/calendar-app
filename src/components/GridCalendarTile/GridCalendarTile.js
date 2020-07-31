@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./GridCalendarTile.module.css";
 
-import { MONTHS } from "../../../constants/constants";
+import { MONTHS } from "../../constants/constants";
 
 export default function GridCalendarTile({ date, setMonth, setMonthAndYear }) {
 	function handleOnClick(num) {
