@@ -23,7 +23,6 @@ function CalendarPageComponent({
 	return (
 		<div>
 			<GridCalendarTile date={date} setMonth={setMonth} setMonthAndYear={setMonthAndYear} />
-			<p>{`${date.month} ${date.year} ${numOfDaysInMonth} ${firstDayOfMonth}`}</p>
 			<GridCalendar
 				numOfDaysInMonth={numOfDaysInMonth}
 				numOfDaysInMonthPrev={numOfDaysInMonthPrev}

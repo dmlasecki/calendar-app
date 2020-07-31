@@ -27,8 +27,7 @@ export default function GridCalendar({ numOfDaysInMonth, numOfDaysInMonthPrev, f
 					firstDayOfMonth={num === 0 ? firstDayOfMonth : ""}
 					day={num}
 					isFade={
-						index < firstDayOfMonth ||
-						index > (numOfDaysInMonth + firstDayOfMonth -1)
+						index < firstDayOfMonth || index > numOfDaysInMonth + firstDayOfMonth - 1
 					}
 				/>
 			))}

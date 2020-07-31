@@ -1,4 +1,7 @@
 import React from "react";
+import styles from "./GridCalendarTile.module.css";
+
+import { MONTHS } from "../../../constants/constants";
 
 export default function GridCalendarTile({ date, setMonth, setMonthAndYear }) {
 	function handleOnClick(num) {
@@ -9,7 +12,7 @@ export default function GridCalendarTile({ date, setMonth, setMonthAndYear }) {
 			month = 0;
 			setMonthAndYear({ month, year });
 		} else if (month < 0) {
-		    month = 11;
+			month = 11;
 			year -= 1;
 			setMonthAndYear({ month, year });
 		} else {
@@ -17,10 +20,15 @@ export default function GridCalendarTile({ date, setMonth, setMonthAndYear }) {
 		}
 	}
 	return (
-		<div>
-			<button onClick={() => handleOnClick(-1)}>{"<"}</button>
-			<button>Today</button>
-			<button onClick={() => handleOnClick(1)}>{">"}</button>
+		<div className={styles.gridCalendarTile}>
+			<div className={styles.gridCalendarTileInfo}>
+				<b>{MONTHS[date.month]}</b>{" "}<span>{date.year}</span>
+			</div>
+			<div>
+				<button onClick={() => handleOnClick(-1)}>{"<"}</button>
+				<button onClick={() => handleOnClick(1)}>{">"}</button>
+			</div>
+
 		</div>
 	);
 }
