@@ -8,8 +8,8 @@ const initialState = [
 		tasks: [
 			{
 				id: 1,
-				start: 7,
-				end: 7.5,
+				start: 8,
+				end: 8.5,
 				content: "Go for a walk",
 			},
 		],

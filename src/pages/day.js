@@ -3,9 +3,11 @@ import { connect } from "react-redux";
 import { ActionCreators } from "../redux/actions";
 import { MONTHS } from "../constants/constants";
 import { getTodayTasks } from "../redux/selectors/selectors";
-
+import { getListOfIntervals } from "../utils/tasksListLogic";
+import TaskList from "../components/TaskList/TaskList";
 function DayPageComponent({ date, todayTasks }) {
-	console.log(todayTasks);
+	const hours = getListOfIntervals(8, 16);
+
     return (
     	<div>
 			<b>{date.day}</b>
@@ -13,7 +15,9 @@ function DayPageComponent({ date, todayTasks }) {
 			<span>{MONTHS[date.month]}</span>
 			{" "}
 			<span>{date.year}</span>
+			<TaskList todayTasks={todayTasks} hours={hours} />
 		</div>
+
 	)
 }
 
