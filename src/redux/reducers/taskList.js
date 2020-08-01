@@ -3,14 +3,20 @@ import { ActionTypes } from "../actions";
 const initialState = [
 	{
 		year: 2020,
-		month: 6,
-		day: 21,
+		month: 7,
+		day: 1,
 		tasks: [
 			{
-				id: 1,
-				start: 8,
-				end: 8.5,
+				id: 20621,
+				start: 10,
+				end: 10.5,
 				content: "Go for a walk",
+			},
+			{
+				id: 206218,
+				start: 11,
+				end: 12.5,
+				content: "Go shopping",
 			},
 		],
 	},

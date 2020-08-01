@@ -2,10 +2,12 @@ import { ActionTypes } from "../actions";
 const DATE = new Date();
 
 const initialState = {
-	day: DATE.getDay(),
+	day: DATE.getDate(),
 	month: DATE.getMonth(),
 	year: DATE.getFullYear(),
 };
+
+console.log(initialState);
 
 export default function date(state = initialState, { type, payload }) {
 	switch (type) {

@@ -1,0 +1,9 @@
+.taskListItem {
+    background-color: #249be5;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    color: #fff;
+    width: 200px;
+}

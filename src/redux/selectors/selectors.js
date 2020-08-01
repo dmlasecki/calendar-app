@@ -24,5 +24,8 @@ export const getFirstDayOfMonth = createSelector(dateSelector, ({ year, month })
 });
 
 export const getTodayTasks = createSelector(tasksListSelector, ({ date, taskList }) => {
-	return taskList.filter(e => e.day === date.day && e.month === date.month && e.year === date.year )
+	return taskList
+		.filter((e) => e.day === date.day && e.month === date.month && e.year === date.year)
+		.map((t) => t.tasks)
+		.flat();
 });

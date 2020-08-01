@@ -4,9 +4,10 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    border-top: 1px solid #b1b1b1;
+    border-top: 1px solid #dadce0;
     cursor: pointer;
     position: relative;
+    box-sizing: border-box;
 }
 
 .taskListItem:hover {
@@ -17,8 +18,14 @@
     position: absolute;
     left: -25px;
     top: -10px;
+    font-size: 11px;
 }
 
 .taskListItemFilled {
-    background-color: red;
+    background-color: #249be5;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    color: #fff;
 }

@@ -1,36 +1,39 @@
 import React from "react";
-import TaskListItemEmpty from "./TaskListItem/TaskListItemEmpty";
-import TaskListItem from "./TaskListItem/TaskListItem";
+import TaskListRow from "./TaskListRow/TaskListRow";
+import TaskListItem from "./TaskListRow/TaskListItem";
+import style from "./TaskList.module.css";
 
-export default function TaskList({ todayTasks, hours,  }) {
-	return hours.map((hour, index) => {
-		const tasksInRange = isTaskInRange(hour, hours[index + 1]);
-		return tasksInRange.length > 0 ? (
-			<TaskListItem
-				key={index}
-				start={hour}
-				end={hours[index + 1]}
-				isEven={isEven(index)}
-				task={tasksInRange}
-			/>
-		) : (
-			<TaskListItemEmpty
-				key={index}
-				start={hour}
-				end={hours[index + 1]}
-				isEven={isEven(index)}
-			/>
-		);
-	});
+export default function TaskList({ todayTasks, hours }) {
+	return (
+		<div className={style.taskList}>
+			{hours.map((hour, index) => (
+				<TaskListRow
+					key={index}
+					start={hour}
+					end={hours[index + 1]}
+					isEven={isEven(index)}
+				/>
+			))}
+			{todayTasks.map((task, index) => (
+				<TaskListItem
+					key={index}
+					task={task}
+					duration={getTaskDuration(task)}
+					offsetY={getOffsetY(task)}
+				/>
+			))}
+		</div>
+	);
 
-	function isTaskInRange(start, end) {
-	    if (todayTasks.length> 0) {
-            return todayTasks[0].tasks.filter((e) => e.start >= start && e.end <= end);
-        } else {
-	        return []
-        }
+	function isEven(index) {
+		return index % 2 === 0;
 	}
-    function isEven(index) {
-        return index % 2 === 0;
-    }
+
+	function getTaskDuration(task) {
+		return (task.end - task.start) * 80;
+	}
+
+	function getOffsetY(task) {
+		return (task.start - 8) * 80;
+	}
 }
