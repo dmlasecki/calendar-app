@@ -31,7 +31,7 @@ export default function GridCalendar({
 	return (
 		<div className={styles.gridCalendar}>
 			{DAYS.map((day, index) => (
-				<GridCalendarItem key={index} day={day} onClick={() => {}} isDayIndicator={true} />
+				<GridCalendarItem key={index} day={day} isDayIndicator={true} />
 			))}
 			{arrayOfDays.map((num, index) => (
 				<GridCalendarItem

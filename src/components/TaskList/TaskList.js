@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import TaskListRow from "./TaskListRow/TaskListRow";
 import TaskListItem from "./TaskListRow/TaskListItem";
 import Modal from "../Modals/Modal";
@@ -6,7 +6,7 @@ import style from "./TaskList.module.css";
 
 export default function TaskList({
 	todayTasks,
-	dateInfo,
+	date,
 	hours,
 	addTask,
 	updateTask,
@@ -20,7 +20,7 @@ export default function TaskList({
 		setCurrentTask({ ...obj });
 		openModal();
 	}
-
+	
 	return (
 		<div className={style.taskList}>
 			{hours.map((hour, index) => (
@@ -36,14 +36,15 @@ export default function TaskList({
 				<TaskListItem
 					key={index}
 					task={task}
-					duration={getTaskDuration(task)}
-					offsetY={getOffsetY(task)}
+					duration={task.duration}
+					offsetY={task.offsetY}
+					offsetX={task.offsetX * 20}
 					onClick={() => handleClickOnTask({ ...task })}
 				/>
 			))}
 			{isModalOpen && (
 				<Modal
-					dateInfo={dateInfo}
+					date={date}
 					currentTask={currentTask}
 					hours={hours}
 					onClick={currentTask.id ? updateTask : addTask}
@@ -55,13 +56,5 @@ export default function TaskList({
 
 	function isEven(index) {
 		return index % 2 === 0;
-	}
-
-	function getTaskDuration(task) {
-		return (task.end - task.start) * 80;
-	}
-
-	function getOffsetY(task) {
-		return (task.start - 8) * 80;
 	}
 }

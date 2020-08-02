@@ -1,0 +1,29 @@
+.modalWrapper {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(40, 44, 52, 0.31);
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+}
+
+.modalContainer {
+    max-width: 326px;
+    background-color: #fff;
+    display: flex;
+    margin: 0 auto;
+    padding: 20px;
+    flex-direction: column;
+}
+
+.modalContainer label {
+    font-size: 12px;
+}
+
+.modalContainer select, .modalContainer input {
+    margin: 5px 0 10px;
+}
+.modalSelectContainer {
+    display: flex;
+}

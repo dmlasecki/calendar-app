@@ -7,7 +7,6 @@ const initialState = {
 	year: DATE.getFullYear(),
 };
 
-console.log(initialState);
 
 export default function date(state = initialState, { type, payload }) {
 	switch (type) {

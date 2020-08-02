@@ -19,6 +19,7 @@ function CalendarPageComponent({
 	setMonth,
 	setMonthAndYear,
 	setDay,
+	taskList
 }) {
 	return (
 		<div>

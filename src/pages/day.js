@@ -5,24 +5,17 @@ import { MONTHS } from "../constants/constants";
 import { getTodayTasks, getDateInfo } from "../redux/selectors/selectors";
 import { getListOfIntervals } from "../utils/tasksListLogic";
 import TaskList from "../components/TaskList/TaskList";
-function DayPageComponent({
-	date,
-	todayTasks,
-	dateInfo,
-	addTask,
-	updateTask,
-	openModal,
-	hideModal,
-	ui,
-}) {
-	const hours = getListOfIntervals(8, 16);
+import WeatherTile from "../components/WeatherTile/WeatherTile";
 
+function DayPageComponent({ date, todayTasks, addTask, updateTask, openModal, hideModal, ui }) {
+	const hours = getListOfIntervals(8, 16);
 	return (
 		<div>
+			<WeatherTile />
 			<b>{date.day}</b> <span>{MONTHS[date.month]}</span> <span>{date.year}</span>
 			<TaskList
 				todayTasks={todayTasks}
-				dateInfo={dateInfo}
+				date={date}
 				hours={hours}
 				addTask={addTask}
 				updateTask={updateTask}

@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 
 import InputSelectTime from "./InputSelectTime";
+import styles from "./Modal.module.css";
 
-export default function Modal({ hours, dateInfo, currentTask, onClick, hideModal }) {
+import { formatHour } from "../../utils/tasksListLogic";
+
+export default function Modal({ hours, date, currentTask, onClick, hideModal }) {
 	const [timeInterval, setTimeInterval] = useState({
 		start: currentTask.start,
 		end: currentTask.end,
-		endHours: hours.slice(1),
+		endHours: hours.filter((h) => h > currentTask.start),
 	});
 
 	const [content, setContent] = useState(currentTask.content || "");
@@ -29,33 +32,46 @@ export default function Modal({ hours, dateInfo, currentTask, onClick, hideModal
 
 	function handleSubmit() {
 		onClick({
-			id: dateInfo.id,
+			...date,
 			task: {
-				id: currentTask.id,
+				...currentTask,
 				content: content,
 				start: timeInterval.start,
 				end: timeInterval.end,
-			}
+			},
 		});
 		hideModal();
 	}
 
+	function handleClose() {
+		hideModal();
+	}
+
 	return (
-		<div>
-			<input type="text" onChange={(e) => setContent(e.target.value)} value={content} />
-			<InputSelectTime
-				type={"start"}
-				onChange={(e) => handleChange("start", +e.target.value)}
-				hours={hours}
-				value={timeInterval.start}
-			/>
-			<InputSelectTime
-				type={"end"}
-				onChange={(e) => handleChange("end", +e.target.value)}
-				hours={timeInterval.endHours}
-				value={timeInterval.end}
-			/>
-			<button onClick={handleSubmit}>Submit</button>
+		<div className={styles.modalWrapper}>
+			<div className={styles.modalContainer}>
+				<input
+					type="text"
+					onChange={(e) => setContent(e.target.value)}
+					value={content}
+					placeholder={"Your task ..."}
+				/>
+				<InputSelectTime
+					type={"Start"}
+					onChange={(e) => handleChange("start", +e.target.value)}
+					hours={hours}
+					value={timeInterval.start}
+				/>
+				<InputSelectTime
+					type={"End"}
+					onChange={(e) => handleChange("end", +e.target.value)}
+					hours={timeInterval.endHours}
+					value={timeInterval.end}
+
+				/>
+				<button onClick={handleClose}>Close</button>
+				<button onClick={handleSubmit}>Submit</button>
+			</div>
 		</div>
 	);
 }
