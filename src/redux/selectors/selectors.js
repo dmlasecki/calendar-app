@@ -29,3 +29,9 @@ export const getTodayTasks = createSelector(tasksListSelector, ({ date, taskList
 		.map((t) => t.tasks)
 		.flat();
 });
+
+export const getDateInfo = createSelector(tasksListSelector, ({ date, taskList }) => {
+	return taskList.filter(
+		(e) => e.day === date.day && e.month === date.month && e.year === date.year
+	)[0]
+});

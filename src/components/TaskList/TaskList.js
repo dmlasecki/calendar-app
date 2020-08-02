@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TaskListRow from "./TaskListRow/TaskListRow";
 import TaskListItem from "./TaskListRow/TaskListItem";
+import Modal from "../Modals/Modal";
 import style from "./TaskList.module.css";
 
-export default function TaskList({ todayTasks, hours }) {
+export default function TaskList({
+	todayTasks,
+	dateInfo,
+	hours,
+	addTask,
+	updateTask,
+	openModal,
+	hideModal,
+	isModalOpen,
+}) {
+	const [currentTask, setCurrentTask] = useState({});
+
+	function handleClickOnTask(obj) {
+		setCurrentTask({ ...obj });
+		openModal();
+	}
+
 	return (
 		<div className={style.taskList}>
 			{hours.map((hour, index) => (
@@ -12,6 +29,7 @@ export default function TaskList({ todayTasks, hours }) {
 					start={hour}
 					end={hours[index + 1]}
 					isEven={isEven(index)}
+					onClick={() => handleClickOnTask({start: hour, end: hours[index + 1]})}
 				/>
 			))}
 			{todayTasks.map((task, index) => (
@@ -20,8 +38,18 @@ export default function TaskList({ todayTasks, hours }) {
 					task={task}
 					duration={getTaskDuration(task)}
 					offsetY={getOffsetY(task)}
+					onClick={() => handleClickOnTask({ ...task })}
 				/>
 			))}
+			{isModalOpen && (
+				<Modal
+					dateInfo={dateInfo}
+					currentTask={currentTask}
+					hours={hours}
+					onClick={currentTask.id ? updateTask : addTask}
+					hideModal={hideModal}
+				/>
+			)}
 		</div>
 	);
 
