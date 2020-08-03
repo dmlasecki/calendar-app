@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { ActionCreators } from "../redux/actions";
+import { setDate } from "../redux/actions";
 
 import CalendarTile from "../components/CalendarTile/CalendarTile";
 import GridCalendar from "../components/GridCalendar/GridCalendar";
@@ -30,7 +30,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-	setDate: ActionCreators.setDate,
+	setDate: setDate
 };
 
 const CalendarPage = connect(mapStateToProps, mapDispatchToProps)(CalendarPageComponent);

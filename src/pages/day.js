@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { ActionCreators } from "../redux/actions";
+import {ActionCreators, addTask, setDate, updateTask} from "../redux/actions";
 import {
 	getTodayTasks,
 	getDateInfo,
@@ -48,9 +48,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-	addTask: ActionCreators.addTask,
-	updateTask: ActionCreators.updateTask,
-	setDate: ActionCreators.setDate,
+	addTask: addTask,
+	updateTask: updateTask,
+	setDate: setDate,
 	openModal: ActionCreators.openModal,
 	hideModal: ActionCreators.hideModal,
 };

@@ -5,6 +5,8 @@ import ModalButtons from "./ModalButtons";
 
 import styles from "./Modal.module.css";
 
+const START = "start";
+
 export default function Modal({ hours, date, currentTask, onClick, hideModal }) {
 	const [timeInterval, setTimeInterval] = useState({
 		start: currentTask.start,
@@ -15,9 +17,10 @@ export default function Modal({ hours, date, currentTask, onClick, hideModal }) 
 	const [content, setContent] = useState(currentTask.content || "");
 
 	function handleChange(type, value) {
-		if (type === "start") {
+		if (type === START) {
 			const endHours = hours.filter((h) => h > value);
 			setTimeInterval({
+				...timeInterval,
 				start: value,
 				end: endHours[0],
 				endHours: endHours,
@@ -40,7 +43,6 @@ export default function Modal({ hours, date, currentTask, onClick, hideModal }) 
 				end: timeInterval.end,
 			},
 		});
-		hideModal();
 	}
 
 	return (
@@ -53,14 +55,14 @@ export default function Modal({ hours, date, currentTask, onClick, hideModal }) 
 					placeholder={"Your task ..."}
 				/>
 				<InputSelectTime
-					type={"Start"}
-					onChange={(e) => handleChange("start", +e.target.value)}
+					type={"start"}
+					onChange={handleChange}
 					hours={hours}
 					value={timeInterval.start}
 				/>
 				<InputSelectTime
-					type={"End"}
-					onChange={(e) => handleChange("end", +e.target.value)}
+					type={"end"}
+					onChange={handleChange}
 					hours={timeInterval.endHours}
 					value={timeInterval.end}
 

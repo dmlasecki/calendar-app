@@ -5,7 +5,7 @@ export default function InputSelectTime({ type, onChange, hours, value }) {
 	return (
 		<>
 			<label>{type}:</label>
-			<select name={type} id={type} onChange={onChange} value={value}>
+			<select name={type} id={type} onChange={(e) => onChange(type, +e.target.value)} value={value}>
 				{hours.map((hour, index) => (
 					<option key={index} value={hour}>
 						{formatHour(hour)}
