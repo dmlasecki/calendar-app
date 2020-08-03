@@ -9,13 +9,10 @@ export default function TaskList({
 	date,
 	hours,
 	addTask,
-	setDate,
 	updateTask,
 	openModal,
 	hideModal,
 	isModalOpen,
-	numOfDaysInMonth,
-	numOfDaysInMonthPrev,
 }) {
 	const [currentTask, setCurrentTask] = useState({});
 
@@ -24,23 +21,12 @@ export default function TaskList({
 		openModal();
 	}
 
-	function handleChangeDay(num) {
-		setDate({
-			day: date.day + num,
-			numOfDaysInMonth,
-			numOfDaysInMonthPrev
-		});
-	}
-
 	return (
 		<div className={style.taskList}>
-			<button onClick={() => handleChangeDay(-1)}>{"<"}</button>
-			<button onClick={() => handleChangeDay(1)}>{">"}</button>
 			{hours.map((hour, index) => (
 				<TaskListRow
 					key={index}
 					start={hour}
-					end={hours[index + 1]}
 					isEven={isEven(index)}
 					onClick={() => handleClickOnTask({ start: hour, end: hours[index + 1] })}
 				/>

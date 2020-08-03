@@ -7,17 +7,12 @@ import GridCalendar from "../components/GridCalendar/GridCalendar";
 
 import {
 	getFirstDayOfMonth,
-	getNumOfDaysInMonth,
-	getNumOfDaysInMonthPrev,
 } from "../redux/selectors/selectors";
 
 function CalendarPageComponent({
-	numOfDaysInMonth,
 	firstDayOfMonth,
-	numOfDaysInMonthPrev,
 	date,
 	setDate,
-	setDay,
 }) {
 	return (
 		<div>
@@ -26,8 +21,7 @@ function CalendarPageComponent({
 				setDate={setDate}
 			/>
 			<GridCalendar
-				numOfDaysInMonth={numOfDaysInMonth}
-				numOfDaysInMonthPrev={numOfDaysInMonthPrev}
+				date={date}
 				firstDayOfMonth={firstDayOfMonth}
 				setDate={setDate}
 			/>
@@ -38,8 +32,6 @@ function CalendarPageComponent({
 const mapStateToProps = (state) => {
 	return {
 		...state,
-		numOfDaysInMonth: getNumOfDaysInMonth(state),
-		numOfDaysInMonthPrev: getNumOfDaysInMonthPrev(state),
 		firstDayOfMonth: getFirstDayOfMonth(state),
 	};
 };

@@ -6,8 +6,7 @@ import { DAYS } from "../../constants/constants";
 import styles from "./GridCalendar.module.css";
 
 export default function GridCalendar({
-	numOfDaysInMonth,
-	numOfDaysInMonthPrev,
+	date,
 	firstDayOfMonth,
 	setDate,
 }) {
@@ -16,20 +15,18 @@ export default function GridCalendar({
 	function onItemClickHandle(num) {
 		setDate({
 			day: num,
-			numOfDaysInMonth,
-			numOfDaysInMonthPrev
 		});
 		history.push("/day");
 	}
 
 	const arrayOfDays = crateFullCalendarForMonth(
-		numOfDaysInMonth,
-		numOfDaysInMonthPrev,
+		date.numOfDaysInMonth,
+		date.numOfDaysInMonthPrev,
 		firstDayOfMonth
 	);
 
 	function isFade(index) {
-		return index < firstDayOfMonth || index > numOfDaysInMonth + firstDayOfMonth - 1;
+		return index < firstDayOfMonth || index > date.numOfDaysInMonth + firstDayOfMonth - 1;
 	}
 
 	return (

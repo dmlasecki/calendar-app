@@ -1,10 +1,13 @@
 import { ActionTypes } from "../actions";
+import { getNumOfDaysInMonth } from "../utils";
 const DATE = new Date();
 
 const initialState = {
 	day: DATE.getDate(),
 	month: DATE.getMonth(),
 	year: DATE.getFullYear(),
+	numOfDaysInMonth: getNumOfDaysInMonth(DATE.getFullYear(), DATE.getMonth()),
+	numOfDaysInMonthPrev: getNumOfDaysInMonth(DATE.getFullYear(), DATE.getMonth() - 1),
 };
 
 function setDay(date) {
@@ -27,10 +30,19 @@ function setMonth(date) {
 	}
 }
 
+function setNumOfDaysInMonth(date) {
+	return {
+		...date,
+		numOfDaysInMonth: getNumOfDaysInMonth(date.year, date.month),
+		numOfDaysInMonthPrev: getNumOfDaysInMonth(date.year, date.month - 1),
+	};
+}
+
 function setFullDate(state, payload) {
 	let date = { ...state, ...payload };
 	date = setDay(date);
 	date = setMonth(date);
+	date = setNumOfDaysInMonth(date);
 	return date;
 }
 
