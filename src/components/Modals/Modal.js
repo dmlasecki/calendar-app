@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 import InputSelectTime from "./InputSelectTime";
+import ModalButtons from "./ModalButtons";
+
 import styles from "./Modal.module.css";
 
 export default function Modal({ hours, date, currentTask, onClick, hideModal }) {
@@ -63,8 +65,7 @@ export default function Modal({ hours, date, currentTask, onClick, hideModal }) 
 					value={timeInterval.end}
 
 				/>
-				<button onClick={hideModal}>Close</button>
-				<button onClick={handleSubmit}>Submit</button>
+				<ModalButtons hideModal={hideModal} handleSubmit={handleSubmit} />
 			</div>
 		</div>
 	);

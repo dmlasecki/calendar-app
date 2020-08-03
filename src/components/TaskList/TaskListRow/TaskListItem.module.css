@@ -14,3 +14,7 @@
 .taskListItem:hover {
     background-color: #197dad;
 }
+
+.taskListItem span {
+    font-size: 14px;
+}

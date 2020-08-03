@@ -1,8 +1,9 @@
 import { ActionTypes } from "../actions";
 import { v4 as uuidv4 } from "uuid";
+import { populateCalendar } from "../utils";
 
 function isAnyDateEqual(a, b) {
-	return a.some((s) => isDateEqual(s, b))
+	return a.some((s) => isDateEqual(s, b));
 }
 
 function isDateEqual(a, b) {
@@ -37,21 +38,7 @@ function addTask(state, payload) {
 	}
 }
 
-const initialState = [
-	{
-		year: 2020,
-		month: 7,
-		day: 2,
-		tasks: [
-			{
-				id: uuidv4(),
-				start: 10,
-				end: 11,
-				content: "Go for a walk",
-			}
-		],
-	},
-];
+const initialState = [...populateCalendar()];
 
 export default function taskList(state = initialState, { type, payload }) {
 	switch (type) {

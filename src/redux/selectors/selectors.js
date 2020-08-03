@@ -15,7 +15,7 @@ export const getFirstDayOfMonth = createSelector(dateSelector, ({ year, month })
 
 export const getNumOfTasksPerDays = createSelector(tasksListSelector, ({ date, taskList }) => {
 	return taskList
-		.filter((t) => t.month === date.month)
+		.filter((t) => t.month === date.month && t.year === date.year)
 		.map((e) => ({ day: e.day, tasks: e.tasks.length }));
 });
 
