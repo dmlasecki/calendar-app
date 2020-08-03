@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { ActionCreators } from "../redux/actions";
-import { MONTHS } from "../constants/constants";
 import {
 	getTodayTasks,
 	getDateInfo,
@@ -9,7 +8,7 @@ import {
 import { getListOfIntervals } from "../utils/tasksListLogic";
 import TaskList from "../components/TaskList/TaskList";
 import WeatherTile from "../components/WeatherTile/WeatherTile";
-import DayMonthNavigationButtons from "../components/DayMonthNavigationButtons/DayMonthNavigationButtons";
+import CalendarTile from "../components/CalendarTile/CalendarTile";
 
 function DayPageComponent({
 	date,
@@ -25,12 +24,7 @@ function DayPageComponent({
 	return (
 		<div>
 			<WeatherTile />
-			<b>{date.day}</b> <span>{MONTHS[date.month]}</span> <span>{date.year}</span>
-			<DayMonthNavigationButtons
-				type={"day"}
-				date={date}
-				setDate={setDate}
-			/>
+			<CalendarTile type={"day"} setDate={setDate} date={date} />
 			<TaskList
 				todayTasks={todayTasks}
 				date={date}

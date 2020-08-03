@@ -10,7 +10,7 @@
 
 .modalContainer {
     max-width: 326px;
-    width: 50%;
+    width: 75%;
     background-color: #fff;
     display: flex;
     margin: 0 auto;
@@ -27,12 +27,4 @@
 }
 .modalSelectContainer {
     display: flex;
-}
-
-.modalButtonClose {
-    background-color: #ea7495;
-}
-
-.modalButtonSubmit {
-    background-color: #6dac4d;
 }

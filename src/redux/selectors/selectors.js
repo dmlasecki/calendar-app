@@ -25,16 +25,19 @@ Array.prototype.flatArray = function (date) {
 		.flat();
 };
 
-Array.prototype.getOffsetY = function () {
+Array.prototype.getOffsetX = function () {
 	return this.map((a, index) => ({
 		...a,
 		offsetX: this.slice(0, index).filter(
-			(e) => (e.start > a.start && e.start < a.end) || (e.end > a.start && e.end < a.end)
+			(e) =>
+				(e.start > a.start && e.start < a.end) ||
+				(e.end > a.start && e.end < a.end) ||
+				(e.start < a.start && e.end > a.end)
 		).length,
 	}));
 };
 
-Array.prototype.getOffsetX = function () {
+Array.prototype.getOffsetY = function () {
 	return this.map((t) => ({ ...t, offsetY: (t.start - 8) * 80 }));
 };
 

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import styles from "./WeatherTile.module.css";
+
 export default function WeatherTile() {
 	const [weatherData, setWeatherData] = useState(null);
 
@@ -16,16 +18,14 @@ export default function WeatherTile() {
 	}, []);
 
 	return (
-		<div>
-			<div>
-				{weatherData ? (
-					<>
-						<p>City: {weatherData.name}</p>
-						<p>Temperature: {weatherData.main.temp} °C</p>
-						<p>Wind: {weatherData.wind.speed} m/s</p>
-					</>
-				) : null}
-			</div>
+		<div className={styles.weatherTile}>
+			{weatherData ? (
+				<>
+					<p>City: {weatherData.name}</p>
+					<p>Temperature: {weatherData.main.temp} °C</p>
+					<p>Wind: {weatherData.wind.speed} m/s</p>
+				</>
+			) : null}
 		</div>
 	);
 }

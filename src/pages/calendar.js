@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { ActionCreators } from "../redux/actions";
 
-import GridCalendarTile from "../components/GridCalendarTile/GridCalendarTile";
+import CalendarTile from "../components/CalendarTile/CalendarTile";
 import GridCalendar from "../components/GridCalendar/GridCalendar";
 
 import { getFirstDayOfMonth, getNumOfTasksPerDays } from "../redux/selectors/selectors";
@@ -10,8 +10,13 @@ import { getFirstDayOfMonth, getNumOfTasksPerDays } from "../redux/selectors/sel
 function CalendarPageComponent({ firstDayOfMonth, numOfTasksPerDays, date, setDate }) {
 	return (
 		<div>
-			<GridCalendarTile date={date} setDate={setDate} />
-			<GridCalendar date={date} firstDayOfMonth={firstDayOfMonth} numOfTasksPerDays={numOfTasksPerDays} setDate={setDate} />
+			<CalendarTile date={date} setDate={setDate} type={"month"} />
+			<GridCalendar
+				date={date}
+				firstDayOfMonth={firstDayOfMonth}
+				numOfTasksPerDays={numOfTasksPerDays}
+				setDate={setDate}
+			/>
 		</div>
 	);
 }

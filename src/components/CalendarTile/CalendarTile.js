@@ -1,22 +1,22 @@
 import React from "react";
-import styles from "./GridCalendarTile.module.css";
+import styles from "./CalendarTile.module.css";
 
 import { MONTHS } from "../../constants/constants";
 
 import DayMonthNavigationButtons from "../DayMonthNavigationButtons/DayMonthNavigationButtons";
+const DAY = "day";
 
-export default function GridCalendarTile({
-	date,
-	setDate,
-}) {
+export default function CalendarTile({ date, setDate, type }) {
 	return (
 		<div className={styles.gridCalendarTile}>
 			<div className={styles.gridCalendarTileInfo}>
-				<b>{MONTHS[date.month]}</b> <span>{date.year}</span>
+				<span>
+					{type === DAY ? `${date.day} ` : null} <b>{`${MONTHS[date.month]} `}</b> {date.year}
+				</span>
 			</div>
 			<div>
 				<DayMonthNavigationButtons
-					type={"month"}
+					type={type}
 					date={date}
 					setDate={setDate}
 					numOfDaysInMonth={date.numOfDaysInMonth}

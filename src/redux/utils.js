@@ -28,7 +28,7 @@ export function populateCalendar() {
 }
 
 function populateTaskList() {
-	const numOfTasks = getRandomIntInclusive(0, 3);
+	const numOfTasks = getRandomIntInclusive(0, 2);
 	let taskArray = [];
 	for (let i = 0; i < numOfTasks; i++) {
 		const hours = [getRandomIntInclusive(8, 16),getRandomIntInclusive(8, 16)].sort((a, b) => a - b);

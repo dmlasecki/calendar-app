@@ -3,22 +3,26 @@
     margin: 0 auto;
 }
 
+.layoutContainer {
+    margin: 0 20px;
+}
+
 .layout button {
     text-decoration: none;
-    color: #fff;
-    background-color: #249be5;
     padding: 10px;
     cursor: pointer;
     border: none;
     border-radius: 5px;
 }
 
-.layout button a {
+.layout a {
     text-decoration: none;
     color: #fff;
+    background-color: #249be5;
+    padding: 10px 20px;
 }
 
-button + button {
+a + a, button + button {
     margin-left: 5px;
 }
 
