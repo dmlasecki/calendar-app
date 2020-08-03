@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import TaskListRow from "./TaskListRow/TaskListRow";
-import TaskListItem from "./TaskListRow/TaskListItem";
+import TaskListItem from "./TaskListRow/TaskListItem/TaskListItem";
 import Modal from "../Modal/Modal";
 
 import style from "./TaskList.module.css";
