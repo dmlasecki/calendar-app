@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+
 import TaskListRow from "./TaskListRow/TaskListRow";
 import TaskListItem from "./TaskListRow/TaskListItem";
-import Modal from "../Modals/Modal";
+import Modal from "../Modal/Modal";
+
 import style from "./TaskList.module.css";
 
 export default function TaskList({
@@ -28,6 +30,7 @@ export default function TaskList({
 					key={index}
 					start={hour}
 					isEven={isEven(index)}
+					isLast={index === hours.length - 1}
 					onClick={() => handleClickOnTask({ start: hour, end: hours[index + 1] })}
 				/>
 			))}
@@ -35,9 +38,6 @@ export default function TaskList({
 				<TaskListItem
 					key={index}
 					task={task}
-					duration={task.duration}
-					offsetY={task.offsetY}
-					offsetX={task.offsetX * 20}
 					onClick={() => handleClickOnTask({ ...task })}
 				/>
 			))}

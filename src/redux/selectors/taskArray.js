@@ -12,15 +12,21 @@ export class TaskArray {
 	}
 
 	setOffsetX() {
-		this.array = this.array.map((a, index) => ({
+		const sortedArray = this.array.sort((a,b) => a.start > b.start ? 1 : -1);
+
+		this.array = sortedArray.map((a, index) => ({
 			...a,
-			offsetX: this.array
+			offsetX: sortedArray
 				.slice(0, index)
 				.filter(
-					(e) =>
-						(e.start > a.start && e.start < a.end) ||
-						(e.end > a.start && e.end < a.end) ||
-						(e.start < a.start && e.end > a.end)
+					(e) => {
+						return (e.start > a.start && e.start < a.end) ||
+							(e.end > a.start && e.end < a.end) ||
+							(e.start < a.start && e.end > a.end) ||
+							(e.start === a.start && e.end >= a.end) ||
+							(e.end === a.end && e.end <= a.end)
+					}
+
 				).length,
 		}));
 		return this;

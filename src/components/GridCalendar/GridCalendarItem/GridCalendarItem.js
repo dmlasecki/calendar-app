@@ -1,6 +1,7 @@
 import React from "react";
-import styles from "./GridCalendarItem.module.css";
 import cls from "classnames";
+
+import styles from "./GridCalendarItem.module.css";
 
 export default function GridCalendarItem({ day, firstDayOfMonth,numberOfTasks, isFade, isDayIndicator, onClick }) {
 	return (

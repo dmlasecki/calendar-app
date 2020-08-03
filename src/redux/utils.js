@@ -17,27 +17,42 @@ export function getNumOfDaysInMonth(year, month) {
 export function populateCalendar() {
 	let calendar = [];
 	for (let i = 0; i < 100; i++) {
-		calendar = [...calendar, {
-			year: getRandomIntInclusive(2019, 2021),
-			month: getRandomIntInclusive(0, 11),
-			day: getRandomIntInclusive(1, 27),
-			tasks: [...populateTaskList()]
-		}]
+		calendar = [
+			...calendar,
+			{
+				year: getRandomIntInclusive(2019, 2021),
+				month: getRandomIntInclusive(0, 11),
+				day: getRandomIntInclusive(1, 27),
+				tasks: [...populateTaskList()],
+			},
+		];
 	}
 	return calendar;
 }
 
 function populateTaskList() {
-	const numOfTasks = getRandomIntInclusive(0, 2);
+	const numOfTasks = getRandomIntInclusive(0, 3);
 	let taskArray = [];
 	for (let i = 0; i < numOfTasks; i++) {
-		const hours = [getRandomIntInclusive(8, 16),getRandomIntInclusive(8, 16)].sort((a, b) => a - b);
-		taskArray = [...taskArray, {
-			id: uuidv4(),
-			start: hours[0],
-			end: hours[1],
-			content: randomSentence({min: 4, max: 7})
-		}]
+		const hours = [getRandomIntInclusive(8, 16), getRandomIntInclusive(8, 16)].sort(
+			(a, b) => a - b
+		);
+
+		const start = hours[0];
+		let end = hours[1];
+		if (start === end) {
+			end = end + 0.5;
+		}
+
+		taskArray = [
+			...taskArray,
+			{
+				id: uuidv4(),
+				start: start,
+				end: end,
+				content: randomSentence({ min: 4, max: 7 }),
+			},
+		];
 	}
 	return taskArray;
 }
