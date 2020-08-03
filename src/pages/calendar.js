@@ -16,19 +16,20 @@ function CalendarPageComponent({
 	firstDayOfMonth,
 	numOfDaysInMonthPrev,
 	date,
-	setMonth,
-	setMonthAndYear,
+	setDate,
 	setDay,
-	taskList
 }) {
 	return (
 		<div>
-			<GridCalendarTile date={date} setMonth={setMonth} setMonthAndYear={setMonthAndYear} />
+			<GridCalendarTile
+				date={date}
+				setDate={setDate}
+			/>
 			<GridCalendar
 				numOfDaysInMonth={numOfDaysInMonth}
 				numOfDaysInMonthPrev={numOfDaysInMonthPrev}
 				firstDayOfMonth={firstDayOfMonth}
-				setDay={setDay}
+				setDate={setDate}
 			/>
 		</div>
 	);
@@ -44,9 +45,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-	setMonth: ActionCreators.setMonth,
-	setMonthAndYear: ActionCreators.setMonthAndYear,
-	setDay: ActionCreators.setDay,
+	setDate: ActionCreators.setDate,
 };
 
 const CalendarPage = connect(mapStateToProps, mapDispatchToProps)(CalendarPageComponent);

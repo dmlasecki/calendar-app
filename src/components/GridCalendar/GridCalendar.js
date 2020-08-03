@@ -9,12 +9,16 @@ export default function GridCalendar({
 	numOfDaysInMonth,
 	numOfDaysInMonthPrev,
 	firstDayOfMonth,
-	setDay,
+	setDate,
 }) {
 	let history = useHistory();
 
 	function onItemClickHandle(num) {
-		setDay(num);
+		setDate({
+			day: num,
+			numOfDaysInMonth,
+			numOfDaysInMonthPrev
+		});
 		history.push("/day");
 	}
 

@@ -3,32 +3,24 @@ import styles from "./GridCalendarTile.module.css";
 
 import { MONTHS } from "../../constants/constants";
 
-export default function GridCalendarTile({ date, setMonth, setMonthAndYear }) {
+export default function GridCalendarTile({
+	date,
+	setDate,
+}) {
 	function handleOnClick(num) {
-		let month = date.month + num;
-		let year = date.year;
-		if (month > 11) {
-			year += 1;
-			month = 0;
-			setMonthAndYear({ month, year });
-		} else if (month < 0) {
-			month = 11;
-			year -= 1;
-			setMonthAndYear({ month, year });
-		} else {
-			setMonth(month);
-		}
+		setDate({
+			month: date.month + num,
+		})
 	}
 	return (
 		<div className={styles.gridCalendarTile}>
 			<div className={styles.gridCalendarTileInfo}>
-				<b>{MONTHS[date.month]}</b>{" "}<span>{date.year}</span>
+				<b>{MONTHS[date.month]}</b> <span>{date.year}</span>
 			</div>
 			<div>
 				<button onClick={() => handleOnClick(-1)}>{"<"}</button>
 				<button onClick={() => handleOnClick(1)}>{">"}</button>
 			</div>
-
 		</div>
 	);
 }
