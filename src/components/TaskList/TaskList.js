@@ -46,7 +46,7 @@ export default function TaskList({
 					date={date}
 					currentTask={currentTask}
 					hours={hours}
-					onClick={currentTask.id ? updateTask : addTask}
+					handleClick={currentTask.id ? updateTask : addTask}
 					hideModal={hideModal}
 				/>
 			)}

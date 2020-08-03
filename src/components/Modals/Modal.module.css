@@ -28,3 +28,11 @@
 .modalSelectContainer {
     display: flex;
 }
+
+.modalError {
+    background-color: #ff92b030;
+    padding: 5px;
+    color: red;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
