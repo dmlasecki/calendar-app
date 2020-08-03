@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import InputSelectTime from "./InputSelectTime";
 import styles from "./Modal.module.css";
 
-import { formatHour } from "../../utils/tasksListLogic";
-
 export default function Modal({ hours, date, currentTask, onClick, hideModal }) {
 	const [timeInterval, setTimeInterval] = useState({
 		start: currentTask.start,
@@ -43,10 +41,6 @@ export default function Modal({ hours, date, currentTask, onClick, hideModal }) 
 		hideModal();
 	}
 
-	function handleClose() {
-		hideModal();
-	}
-
 	return (
 		<div className={styles.modalWrapper}>
 			<div className={styles.modalContainer}>
@@ -69,7 +63,7 @@ export default function Modal({ hours, date, currentTask, onClick, hideModal }) 
 					value={timeInterval.end}
 
 				/>
-				<button onClick={handleClose}>Close</button>
+				<button onClick={hideModal}>Close</button>
 				<button onClick={handleSubmit}>Submit</button>
 			</div>
 		</div>

@@ -13,6 +13,12 @@ export const getFirstDayOfMonth = createSelector(dateSelector, ({ year, month })
 	return d.getDay();
 });
 
+export const getNumOfTasksPerDays = createSelector(tasksListSelector, ({ date, taskList }) => {
+	return taskList
+		.filter((t) => t.month === date.month)
+		.map((e) => ({ day: e.day, tasks: e.tasks.length }));
+});
+
 Array.prototype.flatArray = function (date) {
 	return this.filter((e) => e.day === date.day && e.month === date.month && e.year === date.year)
 		.map((t) => t.tasks)
@@ -33,8 +39,8 @@ Array.prototype.getOffsetX = function () {
 };
 
 Array.prototype.getDuration = function () {
-	return this.map(t => ({...t, duration: (t.end -t.start) * 80 }))
-}
+	return this.map((t) => ({ ...t, duration: (t.end - t.start) * 80 }));
+};
 
 export const getTodayTasks = createSelector(tasksListSelector, ({ date, taskList }) => {
 	return taskList.flatArray(date).getOffsetY().getOffsetX().getDuration();

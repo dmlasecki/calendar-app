@@ -8,6 +8,7 @@ import styles from "./GridCalendar.module.css";
 export default function GridCalendar({
 	date,
 	firstDayOfMonth,
+	numOfTasksPerDays,
 	setDate,
 }) {
 	let history = useHistory();
@@ -25,8 +26,21 @@ export default function GridCalendar({
 		firstDayOfMonth
 	);
 
-	function isFade(index) {
+	function isNotFromActualMonth(index) {
 		return index < firstDayOfMonth || index > date.numOfDaysInMonth + firstDayOfMonth - 1;
+	}
+
+	function numberOfTasks(index) {
+		if (isNotFromActualMonth(index)) {
+			return 0;
+		} else {
+			const idx = numOfTasksPerDays.findIndex(n => n.day === arrayOfDays[index]);
+			if (idx > -1) {
+				return numOfTasksPerDays[idx].tasks;
+			} else {
+				return 0;
+			}
+		}
 	}
 
 	return (
@@ -40,7 +54,8 @@ export default function GridCalendar({
 					firstDayOfMonth={num === 0 ? firstDayOfMonth : ""}
 					day={num}
 					dayOfWeek={index % 7}
-					isFade={isFade(index)}
+					isFade={isNotFromActualMonth(index)}
+					numberOfTasks={numberOfTasks(index)}
 					isDayIndicator={false}
 					onClick={() => onItemClickHandle(num)}
 				/>
